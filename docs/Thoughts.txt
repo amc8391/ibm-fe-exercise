@@ -7,6 +7,14 @@ One thing I've realized is now that this LoopBack API is up and running, there a
 After implementing the employee cost function, I'm feeling much more confident about this framework especially looking at the documentation on loopback.io
 My major concern is integrating this with a frontend; I'm not sure if I want to store the built client files in the client directory or stand the applications up separately
 
+As far as I can tell, this outline for the API is pretty close to what I expect the final version of this to look like
+From here I think I just want to make some automated tests
+
+As I've started making the frontend, I realize I should ask some specifics about the requirements
+- Should the company cost display be a list of companies and their associated costs or a dropdown that allows you to look at one company at a time?
+- The requirements call for one table/collection to store the data in the five fields; does that mean there shouldn't be a second table for the company information?
+- The requirements call for a separate form for the company cost calculation; should this be on a separate page?
+
 Some references I've been looking at
 Remote Methods - https://stackoverflow.com/questions/35972885/returning-sum-using-loopback
 Full Stack Development - https://www.youtube.com/watch?v=Mx-cywTNy8s&list=PLillGF-RfqbZjJBAu0sx_0SCuFdzdx4iY
