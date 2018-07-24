@@ -17,10 +17,28 @@
     "employees": {
       "type": "hasMany",
       "model": "employee",
-      "foreignKey": "",
-      "through": "employee"
+      "foreignKey": ""
     }
   },
   "acls": [],
-  "methods": {}
+  "methods": {
+    "prototype.cost": {
+      "accepts": [],
+      "returns": [
+        {
+          "arg": "totalCosts",
+          "type": "number",
+          "root": false,
+          "description": "The total costs"
+        }
+      ],
+      "description": "Calculate the costs of the company (including the salary of its employees)",
+      "http": [
+        {
+          "path": "/costs",
+          "verb": "get"
+        }
+      ]
+    }
+  }
 }

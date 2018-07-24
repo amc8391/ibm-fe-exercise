@@ -3,7 +3,10 @@ I'm not sure what type of database I'll be using, but I'm planning on using an O
 While looking for Node ORMs I found LoopBack which seems to provide some convenient functions for generating APIs
 Looking further into Loopback, it's owned by IBM so I'm going to give it a shot and wireframe out an API
 Originally I planned on making an Express API with the Express CLI, but LB provides its own CLI which should hopefully make things easier to integrate
+One thing I've realized is now that this LoopBack API is up and running, there are a lot of extra endpoints that I don't necessarily want exposed to the users
+After implementing the employee cost function, I'm feeling much more confident about this framework especially looking at the documentation on loopback.io
+My major concern is integrating this with a frontend; I'm not sure if I want to store the built client files in the client directory or stand the applications up separately
 
-
-https://stackoverflow.com/questions/35972885/returning-sum-using-loopback
-https://www.youtube.com/watch?v=Mx-cywTNy8s&list=PLillGF-RfqbZjJBAu0sx_0SCuFdzdx4iY
+Some references I've been looking at
+Remote Methods - https://stackoverflow.com/questions/35972885/returning-sum-using-loopback
+Full Stack Development - https://www.youtube.com/watch?v=Mx-cywTNy8s&list=PLillGF-RfqbZjJBAu0sx_0SCuFdzdx4iY

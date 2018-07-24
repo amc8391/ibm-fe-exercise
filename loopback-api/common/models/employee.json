@@ -28,10 +28,7 @@
     "company": {
       "type": "belongsTo",
       "model": "company",
-      "foreignKey": "",
-      "options": {
-        "nestRemoting": true
-      }
+      "foreignKey": ""
     }
   },
   "acls": [],
