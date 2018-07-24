@@ -19,7 +19,7 @@ class CompanyCostForm extends Component {
             <label className="col-sm-3 col-form-label">Company Name</label>
             <select className="col-sm-9 custom-select" >
               {this.companyList.map(company => 
-                <option value={company.companyId}>{company.name}</option>
+                <option value={company.companyId} key={company.companyId}>{company.name}</option>
               )}
             </select>
           </div>
