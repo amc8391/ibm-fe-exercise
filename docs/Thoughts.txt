@@ -1,0 +1,9 @@
+Upon looking at the prompt, I think I need a frontend (which I'll use react for), a backend API, and a database
+I'm not sure what type of database I'll be using, but I'm planning on using an ORM to make my project agnostic to that choice for the most part
+While looking for Node ORMs I found LoopBack which seems to provide some convenient functions for generating APIs
+Looking further into Loopback, it's owned by IBM so I'm going to give it a shot and wireframe out an API
+Originally I planned on making an Express API with the Express CLI, but LB provides its own CLI which should hopefully make things easier to integrate
+
+
+https://stackoverflow.com/questions/35972885/returning-sum-using-loopback
+https://www.youtube.com/watch?v=Mx-cywTNy8s&list=PLillGF-RfqbZjJBAu0sx_0SCuFdzdx4iY

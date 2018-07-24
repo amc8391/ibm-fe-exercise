@@ -1,0 +1,11 @@
+- On your own laptop or desktop, please create a single-page Node.js application with one main HTML5 page (You can use Angular, VueJS or React).
+- The page should contain five text-boxes on the left-hand side of the page, labeled "First Name", "Last Name", "Address", "Company" and "Salary", with the some of the fields required for entry.
+- Below the five text boxes please place a 'Submit' button.
+- When the user presses the 'Submit' button, the data in the five text-boxes should be written to a database running on your computer.  
+  * If you choose to use a relational database, please make one table to store the data from the five text boxes. 
+  * If you decide to use a document-based database, please use one document to store the five text boxes.
+- Also, when the user clicks the 'Submit' button, whatever text that appears in the textboxes on the left side of the screen should be read from the database and displayed on the right side of the screen.
+- In a separate form, please include an interface that will calculate and display the costs of any of the companies persisted to the database based on the salary of its employees. Make sure to make this calculation as efficient as possible. 
+- Writing tests will also earn you bonus points.
+- Place your results in GitHub, send me the link, and our team will review the end results.
+
