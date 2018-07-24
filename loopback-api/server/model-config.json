@@ -15,10 +15,27 @@
   },
   "employee": {
     "dataSource": "mongods",
-    "public": true
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false,
+          "create": true
+        }
+      }
+    }
   },
   "company": {
     "dataSource": "mongods",
-    "public": true
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false,
+          "find": true,
+          "prototype.cost": true
+        }
+      }
+    }
   }
 }
