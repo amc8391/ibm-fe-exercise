@@ -6,7 +6,6 @@ class CompanyCostForm extends Component {
     super(props);
     this.state = {
       companyList: [],
-      selectedCompany: null,
       selectedCompanyCost: 0,
     }
   }
@@ -37,9 +36,10 @@ class CompanyCostForm extends Component {
           <h3>Current Costs to Companies</h3>
           <div className="form-group row">
             <label className="col-sm-3 col-form-label">Company Name</label>
-            <select className="col-sm-9 custom-select" onChange={this.onCompanyChange.bind(this)} >
+            <select className="col-sm-9 custom-select" ref="selectedCompany" onChange={this.onCompanyChange.bind(this)} >
+              <option value="" disabled selected>Select your company</option>
               {this.state.companyList.map(company => 
-                <option value={company.id} key={company.id}>{company.name}</option>
+                <option value={company.id} key={company.id} >{company.name}</option>
               )}
             </select>
           </div>

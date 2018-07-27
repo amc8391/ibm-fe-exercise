@@ -12,12 +12,12 @@ export const fields = [
     label: 'Address'
   },
   {
-    id: 'company',
+    id: 'companyName',
     label: 'Company'
   },
   {
     id: 'salary',
     label: 'Salary',
-    type: 'numeric'
+    type: 'number'
   }
 ]
