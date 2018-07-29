@@ -32,7 +32,9 @@
       "remoting": {
         "sharedMethods": {
           "*": false,
+          "create": true,
           "find": true,
+          "findOne": true,
           "prototype.cost": true
         }
       }

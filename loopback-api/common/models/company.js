@@ -11,7 +11,8 @@ module.exports = function(Company) {
       if (err) return cb(err);
       let totalCosts = employeeResults
                       .map(emp => emp.salary)
-                      .reduce((salary, total) => total + salary);
+                      .filter(salary => salary > 0)
+                      .reduce((salary, total) => total + salary, 0);
       cb(null, totalCosts);
     });
   };
