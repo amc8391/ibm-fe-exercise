@@ -3,21 +3,6 @@ import { fields } from '../models/User';
 import { createEmployee, findOrCreateCompany } from '../ApiConnector';
 
 class NewEmployeeForm extends Component {
-
-  /**
-   * Given an error with a message attribute, prints this message to the user with the populateFeedback method 
-   * @param {Object} err - An error
-   */
-  handleError(err) {
-    this.populateFeedback({
-      firstName: 'Error!',
-      lastName: 'Message: ' + err.message,
-      address: '',
-      companyName: '',
-      salary: ''
-    });
-  }
-
   /**
    * An event handler invoked when the user submits the new employee form
    * Creates a new employee
@@ -30,37 +15,51 @@ class NewEmployeeForm extends Component {
       this.handleError({message: 'Please fill out the form'});
     } else {
       const companyName = this.refs.companyName.value;
-      let newEmployee = {
+      const newEmployee = {
         firstName: this.refs.firstName.value,
         lastName: this.refs.lastName.value,
         address: this.refs.address.value,
         salary: this.refs.salary.value,
-        companyName: companyName,
-      }
+        companyName,
+      };
 
       findOrCreateCompany(companyName)
-      .then(company => {
-        newEmployee.companyId = company.id;
-        return createEmployee(newEmployee);
-      })
-      .then(emp => {
-        if (emp.error) {
-          throw emp.error
-        }
-        this.populateFeedback(emp);
-        this.clearForm();
-        this.props.onSubmitCb();
-      })
-      .catch(this.handleError.bind(this))
+        .then(company => {
+          newEmployee.companyId = company.id;
+          return createEmployee(newEmployee);
+        })
+        .then(emp => {
+          if (emp.error) {
+            throw emp.error;
+          }
+          this.populateFeedback(emp);
+          this.clearForm();
+          this.props.onSubmitCb();
+        })
+        .catch(this.handleError.bind(this))
     }
   }
 
+  /**
+   * Given an error with a message attribute, prints this message to the user with the
+   * populateFeedback method
+   * @param {Object} err - An error
+   */
+  handleError(err) {
+    this.populateFeedback({
+      firstName: 'Error!',
+      lastName: `Message${err.message}`,
+      address: '',
+      companyName: '',
+      salary: '',
+    });
+  }
 
   /**
    * Iterates through all the known fields in the Employee form and determines whether the form is valid
    */
   validateForm() {
-    for (var i = 0; i < fields.length; i ++) {
+    for (let i = 0; i < fields.length; i += 1) {
       if (fields[i].required && !this.refs[fields[i].id].value) {
         return false;
       }
@@ -73,8 +72,8 @@ class NewEmployeeForm extends Component {
    * @param {Object} returnedEmployee - The newly processed employee
    */
   populateFeedback(returnedEmployee) {
-    for (var i = 0; i < fields.length; i ++) {
-      this.refs['returned' + fields[i].id].value = returnedEmployee[fields[i].id];
+    for (let i = 0; i < fields.length; i += 1) {
+      this.refs[`returned${fields[i].id}`].value = returnedEmployee[fields[i].id];
     }
   }
 
@@ -82,7 +81,7 @@ class NewEmployeeForm extends Component {
    * Sets all the values in the employee form to ''
    */
   clearForm() {
-    for (var i = 0; i < fields.length; i ++) {
+    for (let i = 0; i < fields.length; i += 1) {
       this.refs[fields[i].id].value = '';
     }
   }

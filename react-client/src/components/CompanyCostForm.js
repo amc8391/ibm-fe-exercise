@@ -6,7 +6,7 @@ class CompanyCostForm extends Component {
     super(props);
     this.state = {
       selectedCompanyCost: 0,
-    }
+    };
   }
   
   /**
@@ -15,11 +15,11 @@ class CompanyCostForm extends Component {
   onCompanyChange(e) {
     const companyId = e.target.value;
     getCompanyCostsById(companyId)
-    .then(response => {
-      this.setState({
-        selectedCompanyCost: response.totalCosts
-      })
-    })
+      .then(response => {
+        this.setState({
+          selectedCompanyCost: response.totalCosts,
+        });
+      });
   }
 
   render() {

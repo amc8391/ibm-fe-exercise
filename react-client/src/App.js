@@ -23,7 +23,6 @@ class App extends Component {
   }
 
   render() {
-    getCompanyList()
     return (
       <div className="container">
         <h2>Employee Information</h2>
