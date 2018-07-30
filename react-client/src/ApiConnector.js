@@ -9,11 +9,11 @@ export function createEmployee(employee) {
   return fetch(`${API_BASE}employees`, {
     method: 'POST',
     headers: {
-      "Content-Type": "application/json; charset=utf-8",
+      'Content-Type': 'application/json; charset=utf-8',
     },
     body: JSON.stringify(employee)
   })
-  .then(res => res.json());
+    .then(res => res.json());
 }
 
 /**
@@ -23,29 +23,30 @@ export function createEmployee(employee) {
  */
 export function findOneCompanyByName(companyName) {
   return fetch(`${API_BASE}companies/findOne?filter[where][name]=${companyName}`)
-  .then(res => res.json());
+    .then(res => res.json());
 }
 
 /**
- * Checks to see if a company exists by its name. If the company does not, creates a new company. Returns a company object either way.
+ * Checks to see if a company exists by its name. If the company does not, creates a new company.
+ * Returns a company object either way.
  * @param {string} companyName - The name of the queried company
  * @returns {Promise} - A new or previously existing company object
  */
 export function findOrCreateCompany(companyName) {
   // Check to see if the company exists
   return findOneCompanyByName(companyName)
-  .then(res => {
-    if (!res.error) {
-      return res;
-    } else {
-      // if the company hasn't been created, make it
-      if (res.error.statusCode === 404){
-        return createCompany({name: companyName})
+    .then(res => {
+      if (!res.error) {
+        return res;
       } else {
-        throw res.error; 
+        // if the company hasn't been created, make it
+        if (res.error.statusCode === 404) {
+          return createCompany( {name: companyName} )
+        } else {
+          throw res.error;
+        }
       }
-    }
-  })
+    })
 }
 
 export function createCompany(company) {
@@ -56,11 +57,11 @@ export function createCompany(company) {
   return fetch(`${API_BASE}companies`, {
     method: 'POST',
     headers: {
-      "Content-Type": "application/json; charset=utf-8",
+      'Content-Type': 'application/json; charset=utf-8',
     },
     body: JSON.stringify(company)
   })
-  .then(res => res.json());
+    .then(res => res.json());
 }
 
 /**
@@ -69,7 +70,7 @@ export function createCompany(company) {
  */
 export function getCompanyList() {
   return fetch(`${API_BASE}companies`)
-  .then(res => res.json());
+    .then(res => res.json());
 }
 
 /**
@@ -79,5 +80,5 @@ export function getCompanyList() {
  */
 export function getCompanyCostsById(id) {
   return fetch(`${API_BASE}companies/${id}/costs`)
-  .then(res => res.json());
+    .then(res => res.json());
 }
