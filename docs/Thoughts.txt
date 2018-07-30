@@ -18,3 +18,5 @@ As I've started making the frontend, I realize I should ask some specifics about
 Some references I've been looking at
 Remote Methods - https://stackoverflow.com/questions/35972885/returning-sum-using-loopback
 Full Stack Development - https://www.youtube.com/watch?v=Mx-cywTNy8s&list=PLillGF-RfqbZjJBAu0sx_0SCuFdzdx4iY
+Testing with Jest - https://jestjs.io/docs/en/tutorial-react
+Fetch Mock with Jest - https://www.npmjs.com/package/jest-fetch-mock#installation-and-setup

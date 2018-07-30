@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { fields } from '../models/User';
-import { createNewEmployee, findOneCompanyByName, createCompany } from '../ApiConnector';
+import { createEmployee, findOneCompanyByName, createCompany } from '../ApiConnector';
 
 class NewEmployeeForm extends Component {
   submitNewEmployee(newEmployee) {
-    createNewEmployee(newEmployee);
+    createEmployee(newEmployee);
   }
 
   onSubmit(e) {
@@ -25,11 +25,11 @@ class NewEmployeeForm extends Component {
         return createCompany({name: companyName})
         .then(company => {
           newEmployee.companyId = company.id;
-          return createNewEmployee(newEmployee);
+          return createEmployee(newEmployee);
         })
       } else {
         newEmployee.companyId = res.id;
-        return createNewEmployee(newEmployee);
+        return createEmployee(newEmployee);
       }
     })
     .then(emp => {
