@@ -8,7 +8,7 @@ class CompanyCostForm extends Component {
       selectedCompanyCost: 0,
     };
   }
-  
+
   /**
    * When the company dropdown selection changes, load the total costs for the new company
    */

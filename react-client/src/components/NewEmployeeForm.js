@@ -48,7 +48,7 @@ class NewEmployeeForm extends Component {
   handleError(err) {
     this.populateFeedback({
       firstName: 'Error!',
-      lastName: `Message${err.message}`,
+      lastName: `Message: ${err.message}`,
       address: '',
       companyName: '',
       salary: '',
