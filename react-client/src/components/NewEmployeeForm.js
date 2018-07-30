@@ -4,6 +4,10 @@ import { createEmployee, findOrCreateCompany } from '../ApiConnector';
 
 class NewEmployeeForm extends Component {
 
+  /**
+   * Given an error with a message attribute, prints this message to the user with the populateFeedback method 
+   * @param {Object} err - An error
+   */
   handleError(err) {
     this.populateFeedback({
       firstName: 'Error!',
@@ -14,6 +18,11 @@ class NewEmployeeForm extends Component {
     });
   }
 
+  /**
+   * An event handler invoked when the user submits the new employee form
+   * Creates a new employee
+   * @param {Event} e - The submission event triggering the employee submission
+   */
   onSubmit(e) {
     e.preventDefault();
 
@@ -47,6 +56,9 @@ class NewEmployeeForm extends Component {
   }
 
 
+  /**
+   * Iterates through all the known fields in the Employee form and determines whether the form is valid
+   */
   validateForm() {
     for (var i = 0; i < fields.length; i ++) {
       if (fields[i].required && !this.refs[fields[i].id].value) {
@@ -56,15 +68,22 @@ class NewEmployeeForm extends Component {
     return true;
   }
 
+  /**
+   * Populates the disabled field to get feedback to the user about their new employee submission
+   * @param {Object} returnedEmployee - The newly processed employee
+   */
   populateFeedback(returnedEmployee) {
     for (var i = 0; i < fields.length; i ++) {
       this.refs['returned' + fields[i].id].value = returnedEmployee[fields[i].id];
     }
   }
 
+  /**
+   * Sets all the values in the employee form to ''
+   */
   clearForm() {
     for (var i = 0; i < fields.length; i ++) {
-      this.refs[fields[i].id].value = ''
+      this.refs[fields[i].id].value = '';
     }
   }
 
