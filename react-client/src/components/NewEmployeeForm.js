@@ -3,13 +3,8 @@ import { fields } from '../models/User';
 import { createEmployee, findOneCompanyByName, createCompany } from '../ApiConnector';
 
 class NewEmployeeForm extends Component {
-  submitNewEmployee(newEmployee) {
-    createEmployee(newEmployee);
-  }
-
   onSubmit(e) {
     e.preventDefault();
-
     const companyName = this.refs.companyName.value;
     let newEmployee = {
       firstName: this.refs.firstName.value,
@@ -35,24 +30,21 @@ class NewEmployeeForm extends Component {
     .then(emp => {
       this.populateFeedback(emp);
       this.clearForm();
-      // Update company list
+      this.props.onSubmitCb();
+      // TODO: Update company list
     });
   }
 
   populateFeedback(returnedEmployee) {
-    this.refs.returnedfirstName.value = returnedEmployee.firstName;
-    this.refs.returnedlastName.value = returnedEmployee.lastName;
-    this.refs.returnedaddress.value = returnedEmployee.address;
-    this.refs.returnedsalary.value = returnedEmployee.salary;
-    this.refs.returnedcompanyName.value = returnedEmployee.companyName;
+    for (var i = 0; i < fields.length; i ++) {
+      this.refs['returned' + fields[i].id].value = returnedEmployee[fields[i].id];
+    }
   }
 
   clearForm() {
-    this.refs.firstName.value = '';
-    this.refs.lastName.value = '';
-    this.refs.address.value = '';
-    this.refs.salary.value = '';
-    this.refs.companyName.value = '';
+    for (var i = 0; i < fields.length; i ++) {
+      this.refs[fields[i].id].value = ''
+    }
   }
 
   render() {
