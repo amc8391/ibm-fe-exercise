@@ -1,22 +1,12 @@
 import React, { Component } from 'react';
-import { getCompanyList, getCompanyCostsById } from '../ApiConnector';
+import { getCompanyCostsById } from '../ApiConnector';
 
 class CompanyCostForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      companyList: [],
       selectedCompanyCost: 0,
     }
-  }
-
-  componentWillMount() {
-    getCompanyList()
-    .then(companies => {
-      this.setState({
-        companyList: companies
-      })
-    });
   }
 
   onCompanyChange(e) {
@@ -36,9 +26,9 @@ class CompanyCostForm extends Component {
           <h3>Current Costs to Companies</h3>
           <div className="form-group row">
             <label className="col-sm-3 col-form-label">Company Name</label>
-            <select className="col-sm-9 custom-select" ref="selectedCompany" onChange={this.onCompanyChange.bind(this)} >
-              <option value="" disabled selected>Select your company</option>
-              {this.state.companyList.map(company => 
+            <select className="col-sm-9 custom-select" ref="selectedCompany" defaultValue="" onChange={this.onCompanyChange.bind(this)} >
+              <option value="" disabled>Select your company</option>
+              {this.props.companyList.map(company => 
                 <option value={company.id} key={company.id} >{company.name}</option>
               )}
             </select>

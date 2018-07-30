@@ -16,6 +16,23 @@ export function findOneCompanyByName(companyName) {
   .then(res => res.json());
 }
 
+export function findOrCreateCompany(companyName) {
+  // Check to see if the company exists
+  return findOneCompanyByName(companyName)
+  .then(res => {
+    if (!res.error) {
+      return res;
+    } else {
+      // if the company hasn't been created, make it
+      if (res.error.statusCode === 404){
+        return createCompany({name: companyName})
+      } else {
+        throw res.error; 
+      }
+    }
+  })
+}
+
 export function createCompany(company) {
   return fetch(`${API_BASE}companies`, {
     method: 'POST',

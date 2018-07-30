@@ -1,23 +1,28 @@
 export const fields = [
   {
     id: 'firstName',
-    label: 'First Name'
+    label: 'First Name',
+    required: true
   },
   {
     id: 'lastName',
-    label: 'Last Name'
+    label: 'Last Name',
+    required: true
   },
   {
     id: 'address',
-    label: 'Address'
+    label: 'Address',
+    required: true
   },
   {
     id: 'companyName',
-    label: 'Company'
+    label: 'Company',
+    required: true
   },
   {
     id: 'salary',
     label: 'Salary',
-    type: 'number'
+    type: 'number',
+    required: true
   }
 ]
