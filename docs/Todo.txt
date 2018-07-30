@@ -1,7 +1,3 @@
-Add input validation
-Add error dialogues
 Test react components
-Update company list when new companies are made/new users are made
 Change API endpoint to an env variable on frontend
 Make a README
-Fix deployment to loopback app
