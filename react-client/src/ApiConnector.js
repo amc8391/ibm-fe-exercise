@@ -1,4 +1,4 @@
-const API_BASE = '/api/';
+const API_BASE = 'http://localhost:3001/api/';
 
 export function createEmployee(employee) {
   return fetch(`${API_BASE}employees`, {
@@ -14,6 +14,23 @@ export function createEmployee(employee) {
 export function findOneCompanyByName(companyName) {
   return fetch(`${API_BASE}companies/findOne?filter[where][name]=${companyName}`)
   .then(res => res.json());
+}
+
+export function findOrCreateCompany(companyName) {
+  // Check to see if the company exists
+  return findOneCompanyByName(companyName)
+  .then(res => {
+    if (!res.error) {
+      return res;
+    } else {
+      // if the company hasn't been created, make it
+      if (res.error.statusCode === 404){
+        return createCompany({name: companyName})
+      } else {
+        throw res.error; 
+      }
+    }
+  })
 }
 
 export function createCompany(company) {

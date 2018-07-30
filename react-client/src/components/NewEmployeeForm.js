@@ -1,38 +1,59 @@
 import React, { Component } from 'react';
 import { fields } from '../models/User';
-import { createEmployee, findOneCompanyByName, createCompany } from '../ApiConnector';
+import { createEmployee, findOrCreateCompany } from '../ApiConnector';
 
 class NewEmployeeForm extends Component {
+
+  handleError(err) {
+    this.populateFeedback({
+      firstName: 'Error!',
+      lastName: 'Message: ' + err.message,
+      address: '',
+      companyName: '',
+      salary: ''
+    });
+  }
+
   onSubmit(e) {
     e.preventDefault();
-    const companyName = this.refs.companyName.value;
-    let newEmployee = {
-      firstName: this.refs.firstName.value,
-      lastName: this.refs.lastName.value,
-      address: this.refs.address.value,
-      salary: this.refs.salary.value,
-      companyName: companyName,
-    }
 
-    findOneCompanyByName(companyName)
-    .then(res => {
-      if (res.error) {
-        return createCompany({name: companyName})
-        .then(company => {
-          newEmployee.companyId = company.id;
-          return createEmployee(newEmployee);
-        })
-      } else {
-        newEmployee.companyId = res.id;
-        return createEmployee(newEmployee);
+    if (!this.validateForm()) {
+      this.handleError({message: 'Please fill out the form'});
+    } else {
+      const companyName = this.refs.companyName.value;
+      let newEmployee = {
+        firstName: this.refs.firstName.value,
+        lastName: this.refs.lastName.value,
+        address: this.refs.address.value,
+        salary: this.refs.salary.value,
+        companyName: companyName,
       }
-    })
-    .then(emp => {
-      this.populateFeedback(emp);
-      this.clearForm();
-      this.props.onSubmitCb();
-      // TODO: Update company list
-    });
+
+      findOrCreateCompany(companyName)
+      .then(company => {
+        newEmployee.companyId = company.id;
+        return createEmployee(newEmployee);
+      })
+      .then(emp => {
+        if (emp.error) {
+          throw emp.error
+        }
+        this.populateFeedback(emp);
+        this.clearForm();
+        this.props.onSubmitCb();
+      })
+      .catch(this.handleError.bind(this))
+    }
+  }
+
+
+  validateForm() {
+    for (var i = 0; i < fields.length; i ++) {
+      if (fields[i].required && !this.refs[fields[i].id].value) {
+        return false;
+      }
+    }
+    return true;
   }
 
   populateFeedback(returnedEmployee) {
